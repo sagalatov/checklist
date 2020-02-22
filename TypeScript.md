@@ -367,11 +367,10 @@ fetchTodos()
   console.log('Data:', data)
 })
 .catch(e => console.error(e));
-``
+```
 
 Вариант с "async await"
 Если внутри функции мы используем await то ферхнеуровненвая функция должна быть асинхронной
-
 ```
 async function fetchAsyncTodos() {
   console.log('Fetch todo startes...')
@@ -388,5 +387,6 @@ async function fetchAsyncTodos() {
 }
 fetchAsyncTodos()
 fetchAsyncTodos().then() // Возможно
+
 ```
         

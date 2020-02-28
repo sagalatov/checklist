@@ -40,47 +40,47 @@ var p = new Person();
 #### call  
 Встроенные метод который возвращает и вызывает функцию с новым контекстом, контекст передается 1 аргументом. Также можно передать последующие аргументы которые в дальнейшем будут использоваться.
 
-#### applay  
+#### apply  
 Встроенные метод который возвращает и вызывает функцию с новым контекстом, принимает 2 обязательных параметра это контекст и массив из аргументов.
 
-```
+```javascript
 function hello() {
 console.log(this)
 }
 
 hello()
 const person = {
-name: 'Sergey',
-age: 27,
-seyHello: hello,
-seyHelloWindow: hello.bind(window), // window
-logInfo: function (phone, method) {
-console.log(`Name is ${this.name}`)
-console.log(`Age is ${this.age}`)
-console.log(`Phone is ${phone}`)
-console.log(`Method is ${method}`)
-}
+  name: 'Sergey',
+  age: 27,
+  seyHello: hello,
+  seyHelloWindow: hello.bind(window), // window
+  logInfo: function (phone, method) {
+    console.log(`Name is ${this.name}`)
+    console.log(`Age is ${this.age}`)
+    console.log(`Phone is ${phone}`)
+    console.log(`Method is ${method}`)
+  }
 }
 const alina = {
-name: 'Alina',
-age: 27
+  name: 'Alina',
+  age: 27
 }
 
 person.seyHelloWindow() // window
 ```
 
-Bind (Возвращает функцию и мы вызываем ее когда необходимо)
+**Bind** (Возвращает функцию и мы вызываем ее когда необходимо)
 ```
 const fnAlinaInfoLogBind = person.logInfo.bind(alina, '8-800-888-80-80', 'bind');
 fnAlinaInfoLogBind();
 ```
 
-Call (Возвращает функцию и вызывает ее сразу)
+**Call** (Возвращает функцию и вызывает ее сразу)
 ```
 person.logInfo.call(alina, '8-800-888-80-80', 'call');
 ```
 
-Applay (Поведение аналогично call, разница только в том что принимает вторым аргумент массив из параметров)
+**Apply** (Поведение аналогично call, разница только в том что принимает вторым аргумент массив из параметров)
 ```
 person.logInfo.apply(alina, ['8-800-888-80-80', 'apply']);
 ```

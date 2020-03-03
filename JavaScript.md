@@ -2,7 +2,7 @@
 * this, call, apply, bind
 * prototype, рассказ что это и как работает
 * ООП в js: наследование, инкапсуляция  
-* ES6 - const и let, arrow function, классы, шаблонные строки, spread operator, rest parameters, деструктивное присваивание объектов/массивов 
+* ES6 - const и let, arrow function, классы, шаблонные строки, spread operator, rest parameters, деструктивное присваивание объектов/массивов, cтруктуры данных ES2015: Map, Set, Iterable.
 * как устроена асинхронность в js. Event loop 
 * работа с асинхронностью; promise - основные методы, создание промиса из функции с колбэком
 
@@ -393,6 +393,26 @@ let person = {
 let { firstName: first, lastName: last } = person;
 console.log(first, last) // Sergey Sagalatov
 ```
+#### Структуры данных ES2015: Map, Set, Iterable.
+**Iterable** - перебираемые объекты (коллекции элементов) для которого может быть использован метод **for of**.  
+К таким объектам относятся строки, псевдомассивы - объекты, имеющие индексированные свойства и length ( function arguments, выборка DOM elements ).  
+Технически итерируемые объекты должны иметь метод Symbol.iterator.  
+Результат вызова obj[Symbol.iterator] называется итератором. Он управляет процессом итерации.  
+Есть универсальный метод **Array.from**, который принимает итерируемый объект или псевдомассив и делает из него «настоящий» Array. После этого мы уже можем использовать методы массивов.  
+``` Array.from('some strings') // ["s", "o", "m", "e", " ", "s", "t", "r", "i", "n", "g", "s"] ```
+```javascript
+function foo(a, b, c) {
+  arguments.forEach(item => console.log(item))
+}
+foo(1, 2, 3) // Uncaught TypeError: arguments.forEach is not a function
+
+function boo(a, b, c) {
+  Array.from(arguments).forEach(item => console.log(item))
+}
+boo(1, 2, 3) // 1, 2, 3
+```
+[Перебираемые объекты](https://learn.javascript.ru/iterable#array-from).  
+[Примеры использования Array.from](https://dmitripavlutin.com/javascript-array-from-applications/)
 
 ### как устроена асинхронность в js. Event loop.
 ```javascript

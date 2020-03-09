@@ -412,7 +412,39 @@ function boo(a, b, c) {
 boo(1, 2, 3) // 1, 2, 3
 ```
 [Перебираемые объекты](https://learn.javascript.ru/iterable#array-from).  
-[Примеры использования Array.from](https://dmitripavlutin.com/javascript-array-from-applications/)
+[Примеры использования Array.from](https://dmitripavlutin.com/javascript-array-from-applications/)  
+
+**Map** – это коллекция ключ/значение, как и Object. Но основное отличие в том, что Map позволяет использовать ключи любого типа.
+Для перебора коллекции Map есть 3 метода:  
+map.keys() – возвращает итерируемый объект по ключам,  
+map.values() – возвращает итерируемый объект по значениям,  
+map.entries() – возвращает итерируемый объект по парам вида [ключ, значение], этот вариант используется по умолчанию в for..of.  
+```javascript
+const map = new Map()
+map.set('one', 'string as key');
+map.set(2, 'number as key');
+map.set({name: 'Jimmy'}, 'object as key')
+
+console.log( map.get(2)) // number as key
+
+console.log(map) 
+/*
+[[Entries]]
+  0: {"one" => "string as key"}
+  1: {2 => "number as key"}
+  2: {Object => "object as key"}
+    key: {name: "Jimmy"}
+    value: "object as key"
+*/
+```  
+**Set** – это особый вид коллекции: «множество» значений (без ключей), *где каждое значение может появляться только один раз*.  
+Хорошо подходит для фильтрации повторяющихся элементов массивов.
+```javascript
+console.log(new Set(['one', 'two', 'one', 'three', 'two', 'four'])); // Set(4) {"one", "two", "three", "four"}
+```
+Set имеет те-же методы что и Map: keys, values, entries. 
+Set можно перебирать с помощью: ```for..of``` и ```forEach```.   
+[Более подробно о Map и Set](https://learn.javascript.ru/map-set).  
 
 ### как устроена асинхронность в js. Event loop.
 ```javascript

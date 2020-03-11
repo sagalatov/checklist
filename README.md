@@ -24,5 +24,7 @@
 
 12. [GIT](https://github.com/sagalatov/checklist/blob/master/GIT.md)
 
+13. [ComputerScience](https://github.com/sagalatov/checklist/blob/master/ComputerScience.md)
+
 
 

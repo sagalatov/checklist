@@ -26,5 +26,7 @@
 
 13. [ComputerScience](https://github.com/sagalatov/checklist/blob/master/ComputerScience.md)
 
+14. [Bundling CI CD](https://github.com/sagalatov/checklist/blob/master/Bundling_Ci_CD.md)
+
 
 

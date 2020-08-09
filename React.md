@@ -52,4 +52,28 @@ TODO
 
 #### Hooks
 
-TODO
+
+ **useState** - `const [state, setState] = useState(initialState)` возвращает значение с состоянием и функцию для его обновления. Функция setState используется для обновления состояния. Она принимает новое значение состояния и ставит в очередь повторный рендер компонента. `setState(newState)`  
+
+  **useEffect** - `useEffect(didUpdate)` Функция, переданная в useEffect, будет запущена после того, как рендер будет зафиксирован на экране. Применяется для подписок, таймеров, логирования, обращения к DOM или API (для api лучше использовать мотоды в библиотрках mobX, redux thunk и т.д.). 
+  Второй аргумент useEffect отвечает за условия обновления,
+  `useEffect(() => {  }, [props.source] )` - сработает только при изменении *source*, если передать пустой массив [ ] сработает один раз.
+
+  **useContext** - `const value = useContext(MyContext)` принимает объект контекста (значение, возвращённое из React.createContext) и возвращает текущее значение контекста для этого контекста. Текущее значение контекста определяется пропом value ближайшего <MyContext.Provider>
+
+  **useRef** - `const refContainer = useRef(initialValue)` возвращает изменяемый ref-объект. Дает доступ к DOM. Если вы передадите React объект рефа с помощью подобного выражения `<div ref={myRef}/>`, React установит собственное свойство .current на соответствующий DOM-узел при каждом его изменении. Получить доступ к объекту - `myRef.current`
+
+  **useCallback** - Возвращает мемоизированный колбэк.
+  ```javascript
+  const memoizedCallback = useCallback(
+    () => {
+        doSomething(a, b);
+    },
+    [a, b],
+  )
+  ```
+  изменяется только, если изменяются значения одной из зависимостей.
+
+  **useMemo** - `const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b])` Аналогично useCallback но возвращает значение вычислений а не саму функцию.
+
+  **useReducer** - `const [state, dispatch] = useReducer(reducer, initialArg, init)` Принимает редюсер типа (state, action) => newState и возвращает текущее состояние в паре с методом dispatch. Работает по принципу редакса.

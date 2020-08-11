@@ -135,7 +135,7 @@ class Typescript {
 
 *** 
 
-```
+```javascript
 class Сar {
   readonly moodel: string
   readonly numberOfWheels: number = 4  // Хорошоей практикой считается определять поля до конструктора
@@ -147,7 +147,7 @@ class Сar {
 ```
 
 Короткая запись
-```
+```javascriptjavascript
 class Сar {
 readonly numberOfWheels: number = 4
 constructor(readonly model: string) {
@@ -159,7 +159,7 @@ constructor(readonly model: string) {
 
 ### Наследование  
 Наследование интерфейсов 
-```
+```javascript
 Interface RectWithArea extends Rect {
 getArea: () => number
 }
@@ -197,7 +197,7 @@ class Clock implements Clock {
 Если же к свойствам и методам применяется модификатор private, то к ним нельзя будет обратиться извне при создании объекта данного класса.
 Модификатор protected во многом аналогичен private - свойства и методы с данным модификатором не видны из вне, но к ним можно обратиться из классов-наследников:  
 
-```
+```javascript
 class User {
     private name: string;
     protected age: number;
@@ -235,7 +235,7 @@ class User {
 ### Абстрактные классы  
 Не во что не компелируются, нужны на этапе разработки чтоб бы от них наследоваться  
 
-```
+```javascript
 abstract class Component {
   abstract render():void
   abstract info():string
@@ -257,7 +257,7 @@ class AppComponent extends Component {
 
 Вспомогательная сущность которая позволяет лучше структурировать код если присутствуют однотипные элементы.
 
-```
+```javascript
 enum Membership {
     Simple,
     Standart,
@@ -271,7 +271,7 @@ const membershipReverse = Membership[2] // Premium
 
 Если мы присваиваем енуму строчку то на выходе мы ее и получаем. 
 
-```
+```javascript
 enum SocialMedia {
 VK = ‘VK'
 FACEBOOK = ‘FACEBOOK’,
@@ -283,7 +283,7 @@ console.log(social) // VK
 
 
 ### Интерфейсы - использование, отличие от интерфейсов в "классичиских" ЯП
-```
+```javascript
 interface Rect {
 readonly id: string
 color?: string
@@ -306,13 +306,13 @@ rect1.color = ‘black’
 ```
 Так как мы в конечном счете работаем с JS мы можем менять внутреннее состояние объектов или массива но только внутреннее. Записать новое значение в переменную мы не можем.
 Возможно указывать к какому типу относиться объект 
-```
+```javascript
 const rect3 = {} as Rect
 const rect4 = <Rect> {} //Альтернативная старая запись.
 ```
 Ситуация кода нужно создать интерфейс для объекта у которого будет много динамических ключей 
 
-```
+```javascript
 Interface Styles {
     [key: string]: string
 }
@@ -328,13 +328,13 @@ string к значению.
 
 ### Generics (обобщения)  
 Обобщения (англ. generics) или дженерики - это инструмент, который позволяет писать на TypeScript компоненты, способные работать с различными типами данных.
-```
+```javascript
 const arrayOfNumbers: Array<number> = [1,2,3,4,5]
 const arrayOfStrings: Array<string> = [‘Hello’, ’Sergey’]
 ```
 <> - из чего будет состоять
 
-```
+```javascript
 function reverse<T>(array: T[]):T[] {
   return array.reverse() //Как пример простой реализации
 }
@@ -361,7 +361,7 @@ let user = nes User("Sergey", "27");
 В итоге все инстансы класса получать методы которые были определены в функции декораторе.
 
 ### async await  
-```
+```javascript
 const delay = ms => {
   return new Promise(r => setTimeout(() => r(), ms))
 }
@@ -383,8 +383,8 @@ fetchTodos()
 ```
 
 Вариант с "async await"
-Если внутри функции мы используем await то ферхнеуровненвая функция должна быть асинхронной
-```
+Если внутри функции мы используем await то верхнеуровненвая функция должна быть асинхронной
+```javascript
 async function fetchAsyncTodos() {
   console.log('Fetch todo startes...')
   try { //try catch для обработки ошибок

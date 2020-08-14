@@ -11,7 +11,8 @@
 * Интерфейсы - использование, отличие от интерфейсов в "классичиских" ЯП
 * Генерики (обобщения)
 * Декораторы: создание, примеры использования
-* async await  
+* async await
+* Partial, Pick, Omit. 
 
 ### Типизация  
 TypeScript является строго типизированным языком, и каждая переменная и константа в нем имеет определенный тип. При этом в отличие от javascript мы не можем динамически изменить ранее указанный тип переменной.
@@ -27,7 +28,7 @@ const num: number = 3e10
 const message: string = ’TypeScript’
 
 ##### Array  
-```
+```javascript
 const numberArray: number[ ] = [1,2,3,4,5] 
 const numberArray<number> = [1,2,3,4,5] 
 ```
@@ -44,18 +45,19 @@ let variable: any = 42;
 
 Явное указание возвращаемого типа данных.  
 
-void - функция ничего не вернет.
+**void** - функция ничего не вернет.
+```javascript
 function sayMyName(name: string):void{
 console.log(name)
 }
-
-never - когда функция возвращает ошибку 
-
+```
+**never** - когда функция возвращает ошибку 
+```javascript
 function throwError(message: string):never {
     throw new Error(message)
 }
-
-Именованные типы 
+```
+**Именованные типы**
 type Login = string
 const login: Login = ‘admin'
 type ID = string | number
@@ -67,7 +69,7 @@ type SomeType = string | null | undefined
 
 ### Совместимость типов  
 В TypeScript совместимость типов основана на структурной совместимости.  
-
+```javascript
 interface Monster {
     health : number;
 }
@@ -90,8 +92,9 @@ let v1:Monster = new Daemon(); // OK
 let v2:Monster = new Goblin();  // OK
 
 let v3:Monster = new Ghaul(); // Ошибка, так как в Ghaul нет поля health;
+```
 В Daemon есть дополнительный атрибут name, но это нам не мешает присвоить его переменной типа Monster, так как в Daemon есть все поля из Monster. Но мы не можем присвоить переменной типа Monster экземпляр Ghaul, так как в нём нет атрибута health.
-
+```javascript
 let x = function(arg0:number):void {
     alert(arg0);
 }
@@ -102,6 +105,7 @@ let y = function(arg0:number, arg1 : string):void {
 
 y = x;
 x = y;  // Ошибка, так как в x количество аргументов меньше.
+```
 При сравнении двух функций тоже действует совместимость типов. Мы можем присвоить переменной с типом функции, в которой больше элементов, ссылку на функции с меньшим числом элементов, так как в JavaScript последние параметры функции могут опускаться.
 
 ### User-Defined Type Guards  
@@ -135,7 +139,7 @@ class Typescript {
 
 *** 
 
-```
+```javascript
 class Сar {
   readonly moodel: string
   readonly numberOfWheels: number = 4  // Хорошоей практикой считается определять поля до конструктора
@@ -159,7 +163,7 @@ constructor(readonly model: string) {
 
 ### Наследование  
 Наследование интерфейсов 
-```
+```javascript
 Interface RectWithArea extends Rect {
 getArea: () => number
 }
@@ -197,7 +201,7 @@ class Clock implements Clock {
 Если же к свойствам и методам применяется модификатор private, то к ним нельзя будет обратиться извне при создании объекта данного класса.
 Модификатор protected во многом аналогичен private - свойства и методы с данным модификатором не видны из вне, но к ним можно обратиться из классов-наследников:  
 
-```
+```javascript
 class User {
     private name: string;
     protected age: number;
@@ -235,7 +239,7 @@ class User {
 ### Абстрактные классы  
 Не во что не компелируются, нужны на этапе разработки чтоб бы от них наследоваться  
 
-```
+```javascript
 abstract class Component {
   abstract render():void
   abstract info():string
@@ -257,7 +261,7 @@ class AppComponent extends Component {
 
 Вспомогательная сущность которая позволяет лучше структурировать код если присутствуют однотипные элементы.
 
-```
+```javascript
 enum Membership {
     Simple,
     Standart,
@@ -271,7 +275,7 @@ const membershipReverse = Membership[2] // Premium
 
 Если мы присваиваем енуму строчку то на выходе мы ее и получаем. 
 
-```
+```javascript
 enum SocialMedia {
 VK = ‘VK'
 FACEBOOK = ‘FACEBOOK’,
@@ -283,7 +287,7 @@ console.log(social) // VK
 
 
 ### Интерфейсы - использование, отличие от интерфейсов в "классичиских" ЯП
-```
+```javascript
 interface Rect {
 readonly id: string
 color?: string
@@ -306,13 +310,13 @@ rect1.color = ‘black’
 ```
 Так как мы в конечном счете работаем с JS мы можем менять внутреннее состояние объектов или массива но только внутреннее. Записать новое значение в переменную мы не можем.
 Возможно указывать к какому типу относиться объект 
-```
+```javascript
 const rect3 = {} as Rect
 const rect4 = <Rect> {} //Альтернативная старая запись.
 ```
 Ситуация кода нужно создать интерфейс для объекта у которого будет много динамических ключей 
 
-```
+```javascript
 Interface Styles {
     [key: string]: string
 }
@@ -328,13 +332,13 @@ string к значению.
 
 ### Generics (обобщения)  
 Обобщения (англ. generics) или дженерики - это инструмент, который позволяет писать на TypeScript компоненты, способные работать с различными типами данных.
-```
+```javascript
 const arrayOfNumbers: Array<number> = [1,2,3,4,5]
 const arrayOfStrings: Array<string> = [‘Hello’, ’Sergey’]
 ```
 <> - из чего будет состоять
 
-```
+```javascript
 function reverse<T>(array: T[]):T[] {
   return array.reverse() //Как пример простой реализации
 }
@@ -361,7 +365,7 @@ let user = nes User("Sergey", "27");
 В итоге все инстансы класса получать методы которые были определены в функции декораторе.
 
 ### async await  
-```
+```javascript
 const delay = ms => {
   return new Promise(r => setTimeout(() => r(), ms))
 }
@@ -384,7 +388,7 @@ fetchTodos()
 
 Вариант с "async await"
 Если внутри функции мы используем await то ферхнеуровненвая функция должна быть асинхронной
-```
+```javascript
 async function fetchAsyncTodos() {
   console.log('Fetch todo startes...')
   try { //try catch для обработки ошибок
@@ -402,4 +406,13 @@ fetchAsyncTodos()
 fetchAsyncTodos().then() // Возможно
 
 ```
-        
+### `Partial<Type>`
+   Делает все свойства типа в *Type* необязательными. 
+
+### `Pick<Type, Keys>`
+   Создает тип используя переданные ключи из *Type*  
+   `type TodoPreview = Pick<Todo, "title" | "completed">;`
+   
+### `Omit<Type, Keys>`  
+   Создает тип исключая переданные ключи.  
+   `type TodoPreview = Omit<Todo, "description">`

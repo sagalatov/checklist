@@ -151,7 +151,7 @@ class Сar {
 ```
 
 Короткая запись
-```
+```javascriptjavascript
 class Сar {
 readonly numberOfWheels: number = 4
 constructor(readonly model: string) {
@@ -387,7 +387,9 @@ fetchTodos()
 ```
 
 Вариант с "async await"
+
 Если внутри функции мы используем await то ферхнеуровненвая функция должна быть асинхронной
+
 ```javascript
 async function fetchAsyncTodos() {
   console.log('Fetch todo startes...')

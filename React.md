@@ -10,6 +10,7 @@
 * Однонаправленный поток данных, работа с событиями в React
 * Жизненный цикл компонента, в каких методах жизненного цикла стоит выполнять ajax запросы? В каких стоит "обновлять state на основе props" ?
 * Hooks
+* articles
 
 #### Компоненты, свойства: Props, State.
 TODO
@@ -32,7 +33,20 @@ TODO
 компоненты занимающиеся отрисовкой (презинтационные компоненты). Это было удобно для консолидации стейта в о дном месте, например для форм, а также для 
 шеринга логики между разными презентационными компонентами (или view), например для логики оплаты которую могут использовать разные страницы, попапы или виджеты.
 Также для удобства использования контенеров без создания дополнительных компонентов прослоек часто используются *HOC* или *render props*. После появления *hooks*
-появился еще один способ шарить логику между компонентами.
+появился еще один способ шарить логику между компонентами, благодаря написанию кастомных хуков. 
+```javascript
+const MyComponent = () => {
+  const [time] = useClock();
+  const [x, y] = useMouseMove();
+  // do something with those values
+  return (
+    <>
+      <div>Current time: {time}</div>
+      <div>Mouse coordinates: {x},{y}</div>
+    </>
+  );
+}
+```
 
 #### Что такое refs?
 
@@ -81,3 +95,8 @@ TODO
   **useMemo** - `const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b])` Аналогично useCallback но возвращает значение вычислений а не саму функцию.
 
   **useReducer** - `const [state, dispatch] = useReducer(reducer, initialArg, init)` Принимает редюсер типа (state, action) => newState и возвращает текущее состояние в паре с методом dispatch. Работает по принципу редакса.
+  
+  
+  ### Articles 
+  
+[How to Reuse Logic with React Hooks](https://rafaelquintanilha.com/how-to-reuse-logic-with-react-hooks/)

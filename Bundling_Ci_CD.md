@@ -20,7 +20,7 @@
 * файлы - `url-loader, file-loader`
 * svg - `svgo-loader`
 
-**Plugins** - встраиваются в pipline и преобразовывают код. Наиболее популярные: 
+**Plugins** - функции встраивающиеся в pipline и преобразовывают код. Наиболее популярные: 
 * HtmlWebpackPlugin - создает html и подключает скрипты
 * HotModuleReplacementPlugin - частичная замена модулей при изменении кода в рантайме
 * DefinePlugin - добавляет гобальные переменные webpack

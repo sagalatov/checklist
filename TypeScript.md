@@ -13,6 +13,9 @@
 * Декораторы: создание, примеры использования
 * async await
 * Partial, Pick, Omit. 
+* The keyof Operator.
+* Intersection Types (пересечения)
+* Union Types
 
 ### Типизация  
 TypeScript является строго типизированным языком, и каждая переменная и константа в нем имеет определенный тип. При этом в отличие от javascript мы не можем динамически изменить ранее указанный тип переменной.
@@ -344,7 +347,7 @@ function reverse<T>(array: T[]):T[] {
 }
 ```
 
-Для того что бы одна функция работала с разными типами данных c указанием типов мы используем дженерик типа Т, дженерик тип который будет динамически подстраиваться под тот контент который есть в массиве
+Для того что бы одна функция работала с разными типами данных c указанием типов мы используем дженерик типа Т, дженерик тип который будет **динамически подстраиваться** под тот контент который есть в массиве. Дженерики позволяют делать код более гибким и переиспользуемым, но при этом повышают сложность чтения. 
 
 ### Декораторы: создание, примеры использования.  
 Функция декоратор принимает один параметр: это контсруктор класса к которому данный дкоратор будет применяться
@@ -418,3 +421,67 @@ fetchAsyncTodos().then() // Возможно
 ### `Omit<Type, Keys>`  
    Создает тип исключая переданные ключи.  
    `type TodoPreview = Omit<Todo, "description">`
+
+### The keyof Operator
+Предоставляет более удобную запись чем *union type* для ожидаемого значнния, имя 
+которого будет равно одному из ключей указанному после keyof. 
+   ```typescript
+  interface Todo {
+     id: number;
+     text: string;
+     due: Date;
+}
+
+type TodoKeys = keyof Todo; // "id" | "text" | "due"
+   ```
+### Intersection Types
+Перечесения позволяют объединить несколько типов в один, полученный тип должен удовлетворять
+условиям всех включенных в *intersection* типов. Во включенных типах не должно быть свойств с одинаковыми именами
+и разными типами, это вызовет ошибку `Type 'number' is not assignable to type 'never'.`
+```typescript
+interface Animal {
+  kind: string;
+}
+interface Person {
+  firstName: string;
+  lastName: string;
+  age: number;
+}
+interface Employee {
+  employeeCode: string;
+}
+let employee: Animal & Person & Employee = {
+  kind: 'human',
+  firstName: 'Jane',
+  lastName: 'Smith',
+  age: 20,
+  employeeCode: '123'
+}
+```
+### Union Types
+Объединенные типы могут включать все или некоторые свойства перечисленных типов. Однако доступ в объекте
+реализующем объединенный тип можно получить только к свойствам перечисленным во всех включенных типах. Если свойства имеют одинаковые имены,
+но разные типы, результирующий тип будет вида `number | string`
+```typescript
+interface Animal {
+  kind: string;
+}
+interface Person {
+  kind: string;
+  firstName: string;
+  lastName: string;
+  age: number;
+}
+interface Employee {
+  kind: string;
+  employeeCode: string;
+}
+let employee: Animal | Person | Employee = {
+  kind: 'human',
+  firstName: 'Jane',
+  lastName: 'Smith',
+  age: 20,
+  employeeCode: '123'
+}
+console.log(employee.kind)
+```

@@ -68,7 +68,7 @@ TODO
 ### Жизненный цикл компонента, в каких методах жизненного цикла стоит выполнять ajax запросы? В каких стоит "обновлять state на основе props»?
 
 В данный момент существует последовательность жизненных циклов React указанная на рисунке. 
-![merge](/img/react_lifecycle.PNG	)  
+![merge](/img/react_lifecycle1.PNG)  
 [ссылка на диаграмму](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)  
 
 **ajax** запросы можно выполнять в методе *componentDidMount()* или в хуке *useEffect*.  

@@ -28,5 +28,7 @@
 
 14. [Bundling CI CD](https://github.com/sagalatov/checklist/blob/master/Bundling_Ci_CD.md)
 
+15. [Performance web app](https://github.com/sagalatov/checklist/blob/master/Performance.md)
+
 
 

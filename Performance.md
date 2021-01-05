@@ -5,3 +5,25 @@
 * Кэширование
 * Минификация
 * Оптимизации js
+
+***
+
+### Оптимизация Изображений
+* Сжимать изображения. С помощью сервисов, например [tinypng](https://tinypng.com/)
+* Выбирать подходящие форматы изображений jpg, png, WebP.
+* Использовать превью изображений, например для карточек. 
+* Использовать разные размеры изображений для различных устройств. Атребуты srcset and sizes:
+```html
+<img srcset="elva-fairy-320w.jpg 320w,
+             elva-fairy-480w.jpg 480w,
+             elva-fairy-800w.jpg 800w"
+     sizes="(max-width: 320px) 280px,
+            (max-width: 480px) 440px,
+            800px"
+     src="elva-fairy-800w.jpg" alt="Elva dressed as a fairy">
+```
+или использовать элемент picture.  
+* Использовать векторную графику SVG там где это возможно.
+* Использовать lazy loading. Библиотеки или атребут loading:
+`<img align="center" src="unicorn.jpg" loading="lazy" alt=".."/>`
+Поддержка loading пока не велика, но для прогрессивного улучшения подходит.

@@ -84,3 +84,16 @@ Promise.resolve()
  
 console.log(7);
 ```
+___
+7. Что будет в консоли и почему?:
+```javaScript
+var a = 5;
+function test () {
+    a = 10;
+    if (false) {
+        var a = 20;
+    }
+}
+test();
+console.log(a); // ?
+```

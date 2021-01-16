@@ -5,6 +5,7 @@
 * Кэширование
 * Минификация
 * Оптимизации js
+* React performance
 
 ***
 
@@ -49,3 +50,38 @@
   Импорт только нужных частей библиотек.
 * Минификация - по дефолту webpack минифицирует бандл, но это поведение можно сконфигурировать.
 * Уменьшение количетва запросов и кэширование. Варианты - graphQL, reactQuery, WS, HTTP-2.
+
+### Оптимизация React
+* Использование прод. режима в webpack. Который также включает минификацию.
+* Использование расширения для браузера React profiler. 
+* Постепенная загрузка длинных списков. (react-window and react-virtualized are popular windowing libraries). 
+* Для **Class components**:
+   * Избежание перерендера с помощью **shouldComponentUpdate**
+   * Избежание перерендера с помощью наследования от **React.PureComponent**. 
+   Который релизует логику shouldComponentUpdate автоматически c shallow comparison of props and state.
+* Для **Function components**:
+  * React.memo - позволяет пропустить рендер елси props не изменилтись. Осуществляет shallow comparison. 
+  Также в hoc можно передать функцию для сравнения prevProps, nextProps. 
+  ```javaScript
+  const MyComponent = React.memo(
+    function MyComponent(props) {
+      /* render using props */
+    },
+    function areEqual(prevProps, nextProps): boolean {}
+  );
+  ```
+  * **useMemo** - позволяет избежать пресчета больших вычислений и возвращет мемоизованное значение
+  в случае, если зависимости не изменились. 
+  ```javaScript
+    const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+  ```
+  * **useCallback** - действует похожим образом но возвращает мемоизованную функцию. 
+  ```javaScript
+    const memoizedCallback = useCallback(
+      () => {
+        doSomething(a, b);
+      },
+      [a, b],
+   );
+  ```
+  Официальный блог React о [performance](https://reactjs.org/docs/optimizing-performance.html). 

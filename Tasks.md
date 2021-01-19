@@ -103,3 +103,19 @@ ___
 const nums = [1,9,4,2,3,6,7,1,5]; // [1,1,4,2,3,6,5,7,9]
 ```
 Та же задача с тестами: [codewars](https://www.codewars.com/kata/578aa45ee9fd15ff4600090d)
+
+___
+9. Сделать вложенный объект из строки:
+```javaScript
+const str = 'one.two.three.four.five';
+
+/*{
+    one: {
+        two: {
+            three: {
+                ...
+            }
+        }
+    }
+}*/
+```

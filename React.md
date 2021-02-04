@@ -14,19 +14,108 @@
 * articles
 
 #### Компоненты, свойства: Props, State.
-TODO
+
+* props (намеренно сокращённо от англ. «properties» — свойства), передаются в компонент (служат как параметры функции).
+
+```javascript
+
+//title, created, author, post_hint в данном случае наши пропсы которые в дальнейшем пробрасываються в компонент Title
+
+export function TextContent({title, created, author, post_hint}: ITextContentInterface) {
+    return (
+        <div className={styles.textContent}>
+            <div className={styles.metaData}>
+                <div className={styles.userLink}>
+                    <a href="#user-url" className={styles.username}>{author}</a>
+                </div>
+                <span className={styles.createdAt}>
+                         <span className={styles.publishedLabel}>опубликовано</span>
+                    {moment(created).format("DD-MM-YYYY h:mm:ss")}</span>
+            </div>
+            <Title title={title} post_hint={post_hint}/>
+        </div>
+    );
+}
+
+export function Title({title, post_hint}: ITitleInterface) {
+    return (
+        <h2 className={styles.title}>
+           <span className={styles.postLink}>{title}</span>
+                <Link to="/posts/1" className={styles.postLink}>
+                    {title}
+                </Link>
+            }
+        </h2>
+    );
+}
+```
+
+* state — это обычные JavaScript-объекты. Несмотря на то, что оба содержат информацию, которая влияет на то, что увидим после рендера, есть существенное различие: props передаётся в компонент (служат как параметры функции), в то время как state находится внутри компонента (по аналогии с переменными, которые объявлены внутри функции).
 
 #### Метод setState.
 
-TODO
+Метод setState используется для обновления состояния. Он принимает новое значение состояния и ставит в очередь повторный рендер компонента.
 
 #### Особенности синтаксиса JSX.
 
-TODO
+JSX — расширение языка JavaScript, представляет собой объекты
+
+Следующие два примера кода эквивалентны между собой:
+Babel компилирует JSX в вызовы React.createElement()
+
+```javascript
+const element = (
+  <h1 className="greeting">
+    Привет, мир!
+  </h1>
+);
+
+const element = React.createElement(
+  'h1',
+  {className: 'greeting'},
+  'Привет, мир!'
+);
+```
+
+React.createElement() проводит некоторые проверки с целью выявить баги в коде, но главное — создаёт объект похожий на такой:
+
+```javascript
+// Примечание: этот код несколько упрощён.
+const element = {
+  type: 'h1',
+  props: {
+    className: 'greeting',
+    children: 'Привет, мир!'
+  }
+};
+```
+
+* Предотвращает атаки, основанные на инъекции кода
+  (По умолчанию React DOM экранирует все значения, включённые в JSX перед тем как отрендерить их.)
+
+* Допускает использование любых корректных JavaScript-выражений внутри фигурных скобок
+    
+  ```javascript
+    const element = (
+      <h1>
+        Здравствуй, {formatName(user)}!
+      </h1>
+    );
+  ```
+* Можно использовать внутри выражений if и циклов for, присваивать переменным, передавать функции в качестве аргумента и возвращать из функции.
+
+```javascript
+function getGreeting(user) {
+     if (user) {
+       return <h1>Здравствуй, {formatName(user)}!</h1>;
+     }
+     return <h1>Здравствуй, незнакомец.</h1>;
+   }
+```
 
 #### Что такое keys в React и чем их важность?
 
-TODO
+Ключи помогают React определять, какие элементы были изменены, добавлены или удалены. Их необходимо указывать, чтобы React мог сопоставлять элементы массива с течением времени:
 
 #### Презентационные компоненты и компоненты контейнеры.
 

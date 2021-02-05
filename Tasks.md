@@ -119,3 +119,27 @@ const str = 'one.two.three.four.five';
     }
 }*/
 ```
+___
+10. Написать функцию, которая будет возвращать true если строка (слово) является **палиндромом**, иначе false:
+TODO: Найти такую задачу с тестами на https://www.codewars.com/
+```javaScript
+function isPalindrom (str) {
+    //...
+}
+isPalindrom('казак'); // true
+isPalindrom('строка'); // false
+isPalindrom('шалаш'); // true
+```
+___
+11. Напишите функцию, проверяющую, являются ли две строки **анаграммами** друг друга (регистр букв не имеет значения). Важны только символы, пробелы или знаки препинания не учитываются:
+TODO: Найти такую задачу с тестами на https://www.codewars.com/
+```javaScript
+function isAnagram (str) {
+    //...
+}
+isAnagram('finder', 'Friend'); // true
+isAnagram('hello', 'bye'); // false
+```
+___
+12. Написать полифил для: filter, map, bind.
+___

@@ -143,3 +143,44 @@ isAnagram('hello', 'bye'); // false
 ___
 12. Написать полифил для: filter, map, bind.
 ___
+
+13. Что выведет консоль и как исправить.
+
+```javascript
+const x = 1;
+if (true) {
+ console.log(x);
+ let x = 2;
+}
+```
+
+14. Что выведет консоль и почему?
+```javascript
+const b = [1, 2, 3];
+const fn = (a, ...b) => a + b;
+console.log(fn(1));
+```
+
+15. Что выведет консоль и почему?
+```javascript
+const a = { prop: 1 };
+const b = { prop: 2 };
+const c = { ...a, ...b, b };
+b.prop = 5;
+console.log(c);
+```
+
+16. Что выведет консоль и почему?
+```javascript
+Object.prototype.x = 10
+console.log(window.x)
+```
+
+17. Написать обертку (example: await promiseTimeout(promise, 1000);)
+```javascript
+const promiseTimeout = (
+  promise: Promise<any>,
+  ms: number
+): Promise<any> => {
+}
+```

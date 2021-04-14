@@ -142,6 +142,7 @@ isAnagram('hello', 'bye'); // false
 ```
 ___
 12. Написать полифил для: filter, map, bind.
+  Тесты для [bind](https://codesandbox.io/s/mybind-r2eo1?file=/index.html)
 ___
 
 13. Что выведет консоль и как исправить.

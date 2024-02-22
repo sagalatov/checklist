@@ -5,7 +5,7 @@
 * ES6 - const и let, arrow function, классы, шаблонные строки, spread operator, rest parameters, деструктивное присваивание объектов/массивов, cтруктуры данных ES2015: Map, Set, Iterable.
 * как устроена асинхронность в js. Event loop 
 * работа с асинхронностью; promise - основные методы, создание промиса из функции с колбэком
-
+* use strict
 
 ### this, call, apply, bind.  
 #### this  
@@ -552,3 +552,15 @@ Promise.race([sleep(2000), sleep(5000)]).then(() => {
   console.log('Race promises')
 })
 ```
+
+### Use strict
+Особый режим появившийся в 2009 году в ECMAScript 5 (ES5). Позволяет включить новые возможности языка,
+оповещение об ошибках и недочетах которые ранее игнорировалились.
+Включается автоматически в модулях 
+``` JavaScript
+function myStrictFunction() {
+  // because this is a module, I'm strict by default
+}
+export default myStrictFunction;
+```
+

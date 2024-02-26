@@ -26,7 +26,7 @@ CORS — это механизм безопасности, который поз
     Content-Language,
     Content-Type со значением application/x-www-form-urlencoded, multipart/form-data или text/plain.
 
-Не простой запрос выглядит следующим образом:
+Не простой запрос выглядит следующим образом:  
 ![Big_O](/img/preflight_request.png)  
 
 ### csrf    

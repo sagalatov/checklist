@@ -9,6 +9,7 @@
 * ES6 - const и let, arrow function, классы, шаблонные строки, spread operator, rest parameters, деструктивное присваивание объектов/массивов, cтруктуры данных ES2015: Map, Set, Iterable.
 * как устроена асинхронность в js. Event loop 
 * работа с асинхронностью; promise - основные методы, создание промиса из функции с колбэком
+* use strict
 
 #### Основные архитектурные черты Javascript:
 
@@ -217,7 +218,7 @@ const createdDate = createdAt;  //Приватная
 
 #### let  
 область видимости внутри блока а именно фигурных скобок { }  
-(Не поднимаются - нельзя использовать до объявления)
+(Не поднимаются - нельзя использовать до объявления).
 
 #### arrow function - стрелочная функция
 компактные, иная работа с this, не имеет имени.  
@@ -598,4 +599,50 @@ console.log('All promises')
 Promise.race([sleep(2000), sleep(5000)]).then(() => {
   console.log('Race promises')
 })
+```
+
+### Use strict
+Особый режим появившийся в 2009 году в ECMAScript 5 (ES5). Позволяет включить новые возможности языка,
+оповещение об ошибках и недочетах которые ранее игнорировалились.
+Включается автоматически в модулях 
+``` JavaScript
+function myStrictFunction() {
+  // because this is a module, I'm strict by default
+}
+export default myStrictFunction;
+```
+Примеры:
+``` JavaScript
+"use strict";
+
+(function foo() {
+	console.log(this)
+})(); // undefined
+Без **use strict** в браузере Window, в Node.js global obj.
+
+// Assignment to a non-writable global
+undefined = 5; // TypeError
+Infinity = 5; // TypeError
+
+// Assignment to a non-writable property
+const obj1 = {};
+Object.defineProperty(obj1, "x", { value: 42, writable: false });
+obj1.x = 9; // TypeError
+
+// Assignment to a getter-only property
+const obj2 = {
+  get x() {
+    return 17;
+  },
+};
+obj2.x = 5; // TypeError
+
+// Assignment to a new property on a non-extensible object
+const fixed = {};
+Object.preventExtensions(fixed);
+fixed.newProp = "ohai"; // TypeError
+
+Зарезервированные слова:
+implements, interface, let, package, private, protected, public, static, yield
+Создание одноименных переменных возвращает SyntaxError
 ```

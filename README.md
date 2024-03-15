@@ -1,6 +1,6 @@
 # Чек лист фронтенд разработчика 
 
-1. [Architecture](https://github.com/sagalatov/checklist/blob/master/Architecture.md)
+1. [Architecture](/Architecture.md)
  
 2. [OOP](https://github.com/sagalatov/checklist/blob/master/OOP.md)  
 

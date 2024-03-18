@@ -9,13 +9,14 @@
     * Абстрактные классы
 * Enum'ы
 * Интерфейсы - использование, отличие от интерфейсов в "классичиских" ЯП
-* Генерики (обобщения)
+* Дженерики (обобщения)
 * Декораторы: создание, примеры использования
 * async await
 * Partial, Pick, Omit. 
 * The keyof Operator.
 * Intersection Types (пересечения)
 * Union Types
+* Cужение типов in, is.
 
 ### Типизация  
 TypeScript является строго типизированным языком, и каждая переменная и константа в нем имеет определенный тип. При этом в отличие от javascript мы не можем динамически изменить ранее указанный тип переменной.
@@ -46,7 +47,29 @@ const contact: [string, number] = [’Sergey’, 7519747]
 ##### Any
 let variable: any = 42;
 
-Явное указание возвращаемого типа данных.  
+##### Unknown
+Тип unknown — это надмножество всех доступных типов. Он позволяет присвоить переменной значение произвольного типа.
+Может показаться, что тип unknown работает так же, как any. Однако между ними есть различие. Тип any по сути отключает проверку типов и позволяет выполнять любые операции со значением, например, обращаться к свойствам переменной. Тип unknown запрещает это и требует предварительной проверки типа переменной, либо приведения к нужному типу.
+```javascript
+function f11(x: unknown) {
+  x.foo; // Error
+  x[5]; // Error
+  x(); // Error
+  new x(); // Error
+}
+```
+```javascript
+// Only equality operators are allowed with unknown
+function f10(x: unknown) {
+  x == 5;
+  x !== 10;
+  x >= 0; // Error
+  x + 1; // Error
+  x * 2; // Error
+  -x; // Error
+  +x; // Error
+}
+```
 
 **void** - функция ничего не вернет.
 ```javascript
@@ -54,7 +77,7 @@ function sayMyName(name: string):void{
 console.log(name)
 }
 ```
-**never** - когда функция возвращает ошибку 
+**never** - когда функция возвращает ошибку. Значение которое не должно быть возвращено.
 ```javascript
 function throwError(message: string):never {
     throw new Error(message)
@@ -422,6 +445,10 @@ fetchAsyncTodos().then() // Возможно
    Создает тип исключая переданные ключи.  
    `type TodoPreview = Omit<Todo, "description">`
 
+### `Record<Keys, Type>`  
+   Создает тип объекта с указанным типом ключа и значения.  
+   `type myObj = Record<string, unknown>`
+
 ### The keyof Operator
 Предоставляет более удобную запись чем *union type* для ожидаемого значнния, имя 
 которого будет равно одному из ключей указанному после keyof. 
@@ -484,4 +511,24 @@ let employee: Animal | Person | Employee = {
   employeeCode: '123'
 }
 console.log(employee.kind)
+```
+### Cужение типов
+**in** - проверка наличия указанного свойства в объекте. TS позволяет использовать данный оператор для сужения поетнциальных типов.
+```typescript
+type Fish = { swim: () => void };
+type Bird = { fly: () => void };
+
+function move(animal: Fish | Bird) {
+ if ("swim" in animal) {
+   return animal.swim();
+ }
+
+ return animal.fly();
+}
+```
+**is** - предикат позволяющий сузить переменную до указанного типа.
+```typescript
+function isFish(pet: Fish | Bird): pet is Fish {
+ return (pet as Fish).swim !== undefined
+}
 ```

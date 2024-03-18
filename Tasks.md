@@ -85,7 +85,36 @@ Promise.resolve()
 console.log(7);
 ```
 ___
-7. Что будет в консоли и почему?:
+7. ⭐ Какая очередность вывода будет в консоле 
+```javaScript
+setTimeout(() => {
+  console.log("timeoOut");
+}, 0);
+
+console.log(1);
+
+new Promise((resolve) => {
+  console.log("Promise");
+  setTimeout(() => {
+    console.log("777");
+  }, 0);
+  resolve();
+})
+  .then(() => {
+    console.log("then1");
+  })
+  .then(() => {
+    console.log("then2");
+  });
+
+console.log(4);
+
+setTimeout(() => {
+  console.log("timeout2");
+}, 0);
+```
+___
+8. Что будет в консоли и почему?:
 ```javaScript
 var a = 5;
 function test () {
@@ -98,14 +127,14 @@ test();
 console.log(a); // ?
 ```
 ___
-8. Нечётные числа должны отсортироваться по возрастанию, а чётные должны остаться на своих местах:
+9. Нечётные числа должны отсортироваться по возрастанию, а чётные должны остаться на своих местах:
 ```javaScript
 const nums = [1,9,4,2,3,6,7,1,5]; // [1,1,4,2,3,6,5,7,9]
 ```
 Та же задача с тестами: [codewars](https://www.codewars.com/kata/578aa45ee9fd15ff4600090d)
 
 ___
-9. Сделать вложенный объект из строки:
+10. Сделать вложенный объект из строки:
 ```javaScript
 const str = 'one.two.three.four.five';
 
@@ -120,7 +149,7 @@ const str = 'one.two.three.four.five';
 }*/
 ```
 ___
-10. Написать функцию, которая будет возвращать true если строка (слово) является **палиндромом**, иначе false:
+11. Написать функцию, которая будет возвращать true если строка (слово) является **палиндромом**, иначе false:
 TODO: Найти такую задачу с тестами на https://www.codewars.com/
 ```javaScript
 function isPalindrom (str) {
@@ -131,7 +160,7 @@ isPalindrom('строка'); // false
 isPalindrom('шалаш'); // true
 ```
 ___
-11. Напишите функцию, проверяющую, являются ли две строки **анаграммами** друг друга (регистр букв не имеет значения). Важны только символы, пробелы или знаки препинания не учитываются:
+12. Напишите функцию, проверяющую, являются ли две строки **анаграммами** друг друга (регистр букв не имеет значения). Важны только символы, пробелы или знаки препинания не учитываются:
 TODO: Найти такую задачу с тестами на https://www.codewars.com/
 ```javaScript
 function isAnagram (str) {
@@ -141,11 +170,11 @@ isAnagram('finder', 'Friend'); // true
 isAnagram('hello', 'bye'); // false
 ```
 ___
-12. Написать полифил для: filter, map, bind.  
+13. Написать полифил для: filter, map, bind.  
   Тесты для [bind](https://codesandbox.io/s/mybind-r2eo1?file=/index.html)
 ___
 
-13. Что выведет консоль и как исправить.
+14. Что выведет консоль и как исправить.
 
 ```javascript
 const x = 1;
@@ -155,14 +184,14 @@ if (true) {
 }
 ```
 
-14. Что выведет консоль и почему?
+15. Что выведет консоль и почему?
 ```javascript
 const b = [1, 2, 3];
 const fn = (a, ...b) => a + b;
 console.log(fn(1));
 ```
 
-15. Что выведет консоль и почему?
+16. Что выведет консоль и почему?
 ```javascript
 const a = { prop: 1 };
 const b = { prop: 2 };
@@ -171,13 +200,13 @@ b.prop = 5;
 console.log(c);
 ```
 
-16. Что выведет консоль и почему?
+17. Что выведет консоль и почему?
 ```javascript
 Object.prototype.x = 10
 console.log(window.x)
 ```
 
-17. Написать обертку (example: await promiseTimeout(promise, 1000);)
+18. Написать обертку (example: await promiseTimeout(promise, 1000);)
 ```javascript
 const promiseTimeout = (
   promise: Promise<any>,

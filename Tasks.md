@@ -214,3 +214,34 @@ const promiseTimeout = (
 ): Promise<any> => {
 }
 ```
+
+19. Написать свою реализацию Array flat.
+```javascript
+const arr = [1, 2, 3, [1, 2], "6", [13, {}, 1, [1, "1"]]];
+
+function arrFlat(array) {}
+
+// console.log(arrFlat(arr));
+// [1, 2, 3, 1, 2, 6, 13, {}, 1, 1, 1]
+```
+
+19. Написать свою реализацию Promise.All в функции getPromises.
+```javascript
+const arr = [1, 0, 5, 4, 8];
+
+function fakeApi(ar) {
+  return ar.map((item) => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(item);
+      }, Math.round(Math.random() * 1000));
+    });
+  });
+}
+
+const promiseAll = getPromises(fakeApi(arr));
+promiseAll.then((data) => {
+  console.log("data ", data);
+});
+// 1, 0, 5, 4, 8
+```

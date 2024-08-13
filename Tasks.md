@@ -29,6 +29,25 @@ function sum (num) {
 }
 sum(1)(2)(3)(4); // 10
 ```
+<details>
+  <summary>answer</summary>
+  
+  ```javascript
+  function sum (num) {
+    function fn(val) {
+        return sum(num + val)
+    }
+
+    fn.valueOf = () => {
+        return num
+    }
+
+    return fn
+  }
+  ```
+
+</details>
+
 ___
 4. Написать функцию с асинхронными запросами:
 ```javaScript

@@ -167,6 +167,27 @@ const str = 'one.two.three.four.five';
     }
 }*/
 ```
+
+<details>
+  <summary>answer</summary>
+
+  ```javaScript
+   function getObj(str) {
+    const arr = str.split(".").reverse();
+    let result = {};
+
+    for (let i = 0; i < arr.length; i++) {
+      const element = arr[i];
+
+      result = { [element]: result };
+    }
+
+     return result;
+   }
+  ```
+
+</details>
+
 ___
 11. Написать функцию, которая будет возвращать true если строка (слово) является **палиндромом**, иначе false:
 TODO: Найти такую задачу с тестами на https://www.codewars.com/

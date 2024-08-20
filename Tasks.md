@@ -169,7 +169,7 @@ const str = 'one.two.three.four.five';
 ```
 ___
 11. Написать функцию, которая будет возвращать true если строка (слово) является **палиндромом**, иначе false:
-TODO: Найти такую задачу с тестами на https://www.codewars.com/
+TODO: Найти такую задачу с тестами на [codewars](https://www.codewars.com/kata/57a1fd2ce298a731b20006a4/train/javascript)
 ```javaScript
 function isPalindrom (str) {
     //...
@@ -180,7 +180,7 @@ isPalindrom('шалаш'); // true
 ```
 ___
 12. Напишите функцию, проверяющую, являются ли две строки **анаграммами** друг друга (регистр букв не имеет значения). Важны только символы, пробелы или знаки препинания не учитываются:
-TODO: Найти такую задачу с тестами на https://www.codewars.com/
+TODO: Найти такую задачу с тестами на [codewars](https://www.codewars.com/kata/529eef7a9194e0cbc1000255/train/javascript)
 ```javaScript
 function isAnagram (str) {
     //...

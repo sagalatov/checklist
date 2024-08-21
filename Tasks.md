@@ -212,6 +212,23 @@ isAnagram('hello', 'bye'); // false
 ___
 13. Написать полифил для: filter, map, bind.  
   Тесты для [bind](https://codesandbox.io/s/mybind-r2eo1?file=/index.html)
+
+  <details>
+  <summary>call polyfill</summary>
+
+  ```javaScript
+    Function.prototype.myCall = function (obj, ...arg) {
+      const myMethod = Symbol();
+      obj[myMethod] = this;
+      const result = obj[myMethod](...arg);
+      delete obj[myMethod];
+
+      return result;
+    };
+  ```
+
+</details>
+
 ___
 
 14. Что выведет консоль и как исправить.

@@ -1,7 +1,7 @@
 ## Задачи по JS
 
+1. Что выведет консоль и как исправить.
 
-1. Что выведет консоль и как исправить.  
 ```javaScript
 var a = {
 	lol: 'whut',
@@ -11,24 +11,31 @@ var a = {
 }
 
 var fn = a.kek ? a.kek : a. kek;
-fn(); // ?  
+fn(); // ?
 ```
-___
-2.  Чему в результате равен x.  
+
+---
+
+2.  Чему в результате равен x.
+
 ```javaScript
 Promise.resolve(123)
   .then(x => x + 1)
   .catch(x => x + 2)
   .then(x => x + 3)
 ```
-___
+
+---
+
 3. Написать функцию сложения вида sum(1)(2)(3)...:
+
 ```javaScript
 function sum (num) {
     //...
 }
 sum(1)(2)(3)(4); // 10
 ```
+
 <details>
   <summary>answer</summary>
   
@@ -43,8 +50,10 @@ sum(1)(2)(3)(4); // 10
     }
 
     return fn
-  }
-  ```
+
+}
+
+````
 
 </details>
 
@@ -60,39 +69,45 @@ function getOrder(token, userId) {} // [return Promise]
 async function getData() {
 	// return Promise with {auth, order?, promo?} data
 }
-```
-___
+````
+
+---
+
 5. Что выведет консоль
+
 ```javaScript
 let a = 1;
 let b = { prop: 2 };
 let c = { prop: 3 };
- 
+
 function foo(d, e, f) {
  d = -1;
  e = { prop: -1 };
  f.prop = -1;
 }
- 
+
 foo(a, b, c);
- 
+
 console.log(a, b, c);
 ```
-___
+
+---
+
 6. Какая очередность вывода будет в консоле
+
 ```javaScript
 console.log(1);
- 
+
 setTimeout(function() {
   console.log(2);
 }, 0);
- 
+
 setTimeout(function() {
   console.log(3);
 }, 1);
- 
+
 console.log(4);
- 
+
 Promise.resolve()
   .then(function() {
     console.log(5);
@@ -100,11 +115,14 @@ Promise.resolve()
   .then(function() {
     console.log(6);
   });
- 
+
 console.log(7);
 ```
-___
-7. ⭐ Какая очередность вывода будет в консоле 
+
+---
+
+7. ⭐ Какая очередность вывода будет в консоле
+
 ```javaScript
 setTimeout(() => {
   console.log("timeoOut");
@@ -132,8 +150,11 @@ setTimeout(() => {
   console.log("timeout2");
 }, 0);
 ```
-___
+
+---
+
 8. Что будет в консоли и почему?:
+
 ```javaScript
 var a = 5;
 function test () {
@@ -145,15 +166,21 @@ function test () {
 test();
 console.log(a); // ?
 ```
-___
+
+---
+
 9. Нечётные числа должны отсортироваться по возрастанию, а чётные должны остаться на своих местах:
+
 ```javaScript
 const nums = [1,9,4,2,3,6,7,1,5]; // [1,1,4,2,3,6,5,7,9]
 ```
+
 Та же задача с тестами: [codewars](https://www.codewars.com/kata/578aa45ee9fd15ff4600090d)
 
-___
+---
+
 10. Сделать вложенный объект из строки:
+
 ```javaScript
 const str = 'one.two.three.four.five';
 
@@ -171,26 +198,28 @@ const str = 'one.two.three.four.five';
 <details>
   <summary>answer</summary>
 
-  ```javaScript
-   function getObj(str) {
-    const arr = str.split(".").reverse();
-    let result = {};
+```javaScript
+ function getObj(str) {
+  const arr = str.split(".").reverse();
+  let result = {};
 
-    for (let i = 0; i < arr.length; i++) {
-      const element = arr[i];
+  for (let i = 0; i < arr.length; i++) {
+    const element = arr[i];
 
-      result = { [element]: result };
-    }
+    result = { [element]: result };
+  }
 
-     return result;
-   }
-  ```
+   return result;
+ }
+```
 
 </details>
 
-___
+---
+
 11. Написать функцию, которая будет возвращать true если строка (слово) является **палиндромом**, иначе false.
-тесты - [codewars](https://www.codewars.com/kata/57a1fd2ce298a731b20006a4/train/javascript)
+    тесты - [codewars](https://www.codewars.com/kata/57a1fd2ce298a731b20006a4/train/javascript)
+
 ```javaScript
 function isPalindrom (str) {
     //...
@@ -199,9 +228,12 @@ isPalindrom('казак'); // true
 isPalindrom('строка'); // false
 isPalindrom('шалаш'); // true
 ```
-___
+
+---
+
 12. Напишите функцию, проверяющую, являются ли две строки **анаграммами** друг друга (регистр букв не имеет значения). Важны только символы, пробелы или знаки препинания не учитываются.
-тесты - [codewars](https://www.codewars.com/kata/529eef7a9194e0cbc1000255/train/javascript)
+    тесты - [codewars](https://www.codewars.com/kata/529eef7a9194e0cbc1000255/train/javascript)
+
 ```javaScript
 function isAnagram (str) {
     //...
@@ -209,39 +241,42 @@ function isAnagram (str) {
 isAnagram('finder', 'Friend'); // true
 isAnagram('hello', 'bye'); // false
 ```
-___
+
+---
+
 13. Написать полифил для: filter, map, bind.  
-  Тесты для [bind](https://codesandbox.io/s/mybind-r2eo1?file=/index.html)
+    Тесты для [bind](https://codesandbox.io/s/mybind-r2eo1?file=/index.html)
 
   <details>
   <summary>call polyfill</summary>
 
-  ```javaScript
-    Function.prototype.myCall = function (obj, ...arg) {
-      const myMethod = Symbol();
-      obj[myMethod] = this;
-      const result = obj[myMethod](...arg);
-      delete obj[myMethod];
+```javaScript
+  Function.prototype.myCall = function (obj, ...arg) {
+    const myMethod = Symbol();
+    obj[myMethod] = this;
+    const result = obj[myMethod](...arg);
+    delete obj[myMethod];
 
-      return result;
-    };
-  ```
+    return result;
+  };
+```
 
 </details>
 
-___
+---
 
 14. Что выведет консоль и как исправить.
 
 ```javascript
 const x = 1;
 if (true) {
- console.log(x);
- let x = 2;
+  console.log(x);
+  let x = 2;
 }
 ```
 
 15. Что выведет консоль и почему?
+
 ```javascript
 const b = [1, 2, 3];
 const fn = (a, ...b) => a + b;
@@ -249,6 +284,7 @@ console.log(fn(1));
 ```
 
 16. Что выведет консоль и почему?
+
 ```javascript
 const a = { prop: 1 };
 const b = { prop: 2 };
@@ -258,21 +294,20 @@ console.log(c);
 ```
 
 17. Что выведет консоль и почему?
+
 ```javascript
-Object.prototype.x = 10
-console.log(window.x)
+Object.prototype.x = 10;
+console.log(window.x);
 ```
 
 18. Написать обертку (example: await promiseTimeout(promise, 1000);)
+
 ```javascript
-const promiseTimeout = (
-  promise: Promise<any>,
-  ms: number
-): Promise<any> => {
-}
+const promiseTimeout = (promise: Promise<any>, ms: number): Promise<any> => {};
 ```
 
 19. Написать свою реализацию Array flat.
+
 ```javascript
 const arr = [1, 2, 3, [1, 2], "6", [13, {}, 1, [1, "1"]]];
 
@@ -283,6 +318,7 @@ function arrFlat(array) {}
 ```
 
 19. Написать свою реализацию Promise.All в функции getPromises.
+
 ```javascript
 const arr = [1, 0, 5, 4, 8];
 
@@ -302,3 +338,29 @@ promiseAll.then((data) => {
 });
 // 1, 0, 5, 4, 8
 ```
+
+20. Что выведет консоль и как это исправить.  
+    #замыкания #асинхронность
+
+```javaScript
+for (var i = []; i.length < 3; i.push(1)) {
+  setTimeout(() => {
+    console.log(i);
+  }, 1000 * i.length);
+}
+```
+
+  <details>
+  <summary>answer</summary>
+
+```javaScript
+for (let i = []; i.length < 3; i.push(1)) {
+  const arr = [...i];
+
+  setTimeout(() => {
+    console.log(arr);
+  }, 1000 * arr.length);
+}
+```
+
+</details>

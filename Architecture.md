@@ -56,9 +56,61 @@ MVVM основывается на шаблоне MVP, уделяя особое
 
 #### D: Dependency Inversion Principle
 (Принцип инверсии зависимостей).  
+1. Модули верхнего уровня не должны зависеть от модулей нижнего уровня. Оба типа модулей должны зависеть от абстракций (интерфейсов).
+2. Абстракции не должны зависеть от деталей. Детали должны зависеть от абстракций.  
 Позволяет направить зависимости от низкоуровниевых сущностей (логгер) к более высокооуровневым (бизнес логика) с большим приоритетом. Например используя интерфейсы в высокоуровненых сущностях.  
 Это необходимо для предотвращения необходимости вносить изменения в бизнес логику при изменении мение важных частей системы.  
-[Подробное видео на это тему](https://www.youtube.com/watch?v=u6gAVCEJjQ4)
+[Подробное видео на это тему](https://www.youtube.com/watch?v=u6gAVCEJjQ4)  
+Механизм внедрения зависимостей в конструктор или с помощью методов (сеттеров) называется **Dependency Injection**.  
+
+```JavaScript
+// Определение интерфейса в TypeScript
+interface IHttpClient {
+  get(url: string): string;
+}
+
+// Реализация интерфейса
+class HttpClient implements IHttpClient {
+  get(url: string): string {
+    return `Fetching data from ${url}`;
+  }
+}
+
+class MockHttpClient implements IHttpClient {
+  get(url: string): string {
+    return `Mock fetching data from ${url}`;
+  }
+}
+
+class UserService {
+  private httpClient: IHttpClient;
+
+  constructor(httpClient: IHttpClient) {
+    this.httpClient = httpClient;
+  }
+
+  getUserData(userId: string): string {
+    return this.httpClient.get(`https://api.example.com/users/${userId}`);
+  }
+}
+
+const httpClient = new HttpClient();
+const userService = new UserService(httpClient);
+
+console.log(userService.getUserData('123'));  // Fetching data from https://api.example.com/users/123
+
+// Для тестов можно подставить mock-реализацию
+const mockHttpClient = new MockHttpClient();
+const testUserService = new UserService(mockHttpClient);
+
+console.log(testUserService.getUserData('123'));  // Mock fetching data from https://api.example.com/users/123
+
+```
+Преимущества **Dependency Inversion**:
+1. Гибкость: Модули верхнего уровня не зависят от конкретных реализаций, что позволяет легко изменять или заменять низкоуровневые компоненты.
+2. Тестируемость: Легко подменять зависимости на mock- или stub-реализации для тестирования.
+3. Расширяемость: Абстракции упрощают добавление новых реализаций, не изменяя код верхнего уровня.
+4. Изоляция: Компоненты можно разрабатывать и тестировать независимо друг от друга.
 
 ***
 ## Feature slice design

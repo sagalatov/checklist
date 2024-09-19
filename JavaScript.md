@@ -619,9 +619,11 @@ Promise.race([sleep(2000), sleep(5000)]).then(() => {
 
 #### Метод Promise.any - возвращает первый успешный промис из которого берет результат.
 
-Возвращает результат всех промисов в виде массива объектов со статусом и значением.
+Возвращает результат первого успешного промиса, пропуская ошибки. Если все промисы вернули ошибки, Promise.any
+вернет AggregateError.  
+
 ```javascript
-  let promise = Promise.allSettled(iterable);
+  let promise = Promise.any(iterable);
 ```
 
 #### Promise.resolve (reject)

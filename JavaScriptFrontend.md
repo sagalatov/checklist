@@ -111,7 +111,7 @@ reflow (или relayout).
 Использование GPU для отрисовки слоев графики. В CSS могут быть обработаны напрямую через GPU:
 * transform
 * opacity
-* fulter
+* filter
 * 3D трансформации ( translate Z )
 * тэги Video Canvas
 * z-index

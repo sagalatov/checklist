@@ -496,22 +496,33 @@ Set можно перебирать с помощью: ```for..of``` и ```forEa
 [Более подробно о Map и Set](https://learn.javascript.ru/map-set).  
 
 ### как устроена асинхронность в js. Event loop.
+**Event loop** (цикл событий) - механизм попозволяющий выполнять асинхроный кода
+в однопоточной среде java script не блокируя основной поток. Чтобы этого добиться
+выполняется следующая последовательность операций.
+
+1. Выполнение синхронного кода из стека вызова java script.
+2. Выполнение задач из очереди микротасок (Microtask Queue). Promse, queueMicrotask, mutation Observer.
+3. Выполнение задач из очереди (Task Queue). Timeout, асинхронные события, события интерфейсов.
+
+пример :
+
 ```javascript
-console.log(’Start’) //1
-console.log(’Start2’) //2
-setTimeout(function() {
-  console.log(‘Inside timeout, after 2000 seconds’)
-} //3
-console.log(’End’) //4
+console.log("Start");
+setTimeout(() => {
+  console.log("Timeout");
+}, 0);
+Promise.resolve().then(() => {
+  console.log("Promise");
+});
+console.log("End");
 ```
-1. Start
-2. Start2
-3. End
-4. Inside timeout, after 2000 seconds
-Асинхронность:
-Регистрация -> Сторонние API -> Event loop  -> callStack  
-Event loop: (очередь которая отдает события поочередно) 
-setTimeout - пришла из браузерного api  метод глобального объекта window.  
+
+Start  
+End  
+Promise  
+Timeout
+
+setTimeout - пришла из браузерного api метод глобального объекта window.  
 [Пример Event Loop](latentflip.com/loupe)
         
 ### Работа с асинхронностью. Promise - основные методы, создание промиса из функции с колбэком
